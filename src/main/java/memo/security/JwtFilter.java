@@ -16,7 +16,7 @@ public class JwtFilter implements javax.servlet.Filter {
         String header = httpServletRequest.getHeader("authorization");
         try{
             if(httpServletRequest == null || !header.startsWith("Bearer ")){
-                throw new ServletException("Kapusta");
+                throw new ServletException("JwtFitler request is null or header didnt start with Bearer");
             }
             else{
                 String token = header.substring(7);
@@ -29,12 +29,12 @@ public class JwtFilter implements javax.servlet.Filter {
                     filterChain.doFilter(servletRequest,servletResponse);
                 }
                 catch (Exception e){
-                    System.out.println("Blad w jwt filter, odczytywanie tokenu");
+                    System.out.println("Error while parsing jwt token");
                 }
             }
         }
         catch (NullPointerException e){
-            System.out.println("Brak dostępu!");
+            System.out.println("Acces denied!");
         }
     }
 }

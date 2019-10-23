@@ -1,8 +1,10 @@
 package memo.controllers;
 
 import memo.entities.UserEntities;
+import memo.services.ImageService;
 import memo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,5 +21,11 @@ public class MemyPublicController {
     @PostMapping(value = "/login")
     public String getToken(@RequestBody UserEntities userEntities){
         return userService.userExist(userEntities);
+    }
+    @GetMapping(value = "/test")
+    public String test(){
+        ImageService imageService = new ImageService();
+        String image = imageService.getRandomPicture();
+        return image;
     }
 }
