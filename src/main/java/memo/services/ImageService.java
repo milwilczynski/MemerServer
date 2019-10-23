@@ -1,10 +1,13 @@
 package memo.services;
 
+import org.springframework.stereotype.Service;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Service
 public class ImageService {
     private List<String> nameOfFiles = new ArrayList<>();
     private void fillArrayWithNameOfPictures(){
