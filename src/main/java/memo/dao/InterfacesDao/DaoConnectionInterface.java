@@ -4,4 +4,6 @@ import memo.entities.UserEntities;
 
 public interface DaoConnectionInterface {
     int checkUser(UserEntities userEntities);
+
+    boolean insertUser(UserEntities userEntities);
 }

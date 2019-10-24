@@ -22,6 +22,11 @@ public class MemyPublicController {
     public String getToken(@RequestBody UserEntities userEntities){
         return userService.userExist(userEntities);
     }
+    @PostMapping(value = "/register")
+    public Boolean registerUser(@RequestBody UserEntities userEntities){
+        return userService.createUser(userEntities);
+    }
+    //REQUEST NA ODZYSKIWANIE HASLA ZEBY ODZYSKAC HASLO TRZEBA BEDZIE PODAC MAILA, bedzie generowany jwt token i to bedzie url na maila i z jwt bedzie odczytywany user name
     @GetMapping(value = "/test")
     public String test(){
         ImageService imageService = new ImageService();

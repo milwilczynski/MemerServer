@@ -26,4 +26,11 @@ public class UserService {
         }
         return token;
     }
+    public Boolean createUser(UserEntities userEntities){
+        Boolean created = false;
+        if(dao.insertUser(userEntities)){
+            created = true;
+        }
+        return created;
+    }
 }

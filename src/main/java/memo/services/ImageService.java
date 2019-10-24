@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 @Service
 public class ImageService {
     private List<String> nameOfFiles = new ArrayList<>();
@@ -25,5 +26,19 @@ public class ImageService {
         Random rand = new Random();
         int n = rand.nextInt(nameOfFiles.size());
         return nameOfFiles.get(n);
+    }
+    public String[] getTenPictures(int page){
+        //page = 0 zwroci zdjecia od 0 do 9, page = 1 zwroci zdjecia od 10 do 19, zmienna definiuje zakres obrazkow
+        fillArrayWithNameOfPictures();
+        String returnArray[] = new String[10];
+        int start = 10 * page;
+        int end = start + 10;
+        if(end > nameOfFiles.size()){
+            for(int i = start; i < end; i++){
+                returnArray[i] = nameOfFiles.get(i);
+            }
+            return returnArray;
+        }
+        return null;
     }
 }

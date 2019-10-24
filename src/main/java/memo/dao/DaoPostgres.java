@@ -32,6 +32,18 @@ public class DaoPostgres implements DaoConnectionInterface {
         return 0;
     }
 
+    @Override
+    public boolean insertUser(UserEntities userEntities) {
+        try(Connection connection = createConnection()){
+            //LOGIKA ZWIAZANA Z REJESTRACJA
+            return true;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private Connection createConnection() throws SQLException{
         return DriverManager.getConnection(url,user,passowrd);
     }
