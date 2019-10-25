@@ -2,6 +2,7 @@ package memo.dao;
 
 import memo.dao.InterfacesDao.DaoConnectionInterface;
 import memo.entities.UserEntities;
+import memo.entities.UserRegisterEntities;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -33,7 +34,7 @@ public class DaoPostgres implements DaoConnectionInterface {
     }
 
     @Override
-    public boolean insertUser(UserEntities userEntities) {
+    public boolean insertUser(UserRegisterEntities userRegisterEntities) {
         try(Connection connection = createConnection()){
             //LOGIKA ZWIAZANA Z REJESTRACJA
             return true;
