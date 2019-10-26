@@ -35,7 +35,6 @@ public class UserService {
         ArrayList<Integer> errorArray = regularExpressions.checkTheCorrectness(userRegisterEntities);
 
         if(errorArray.isEmpty()){
-            //jesli tablica bledow jest pusta to zacznij dzialac na bazie
             errorArray = dao.insertUser(userRegisterEntities);
             return errorArray;
         }

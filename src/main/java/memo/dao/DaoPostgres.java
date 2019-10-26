@@ -42,11 +42,12 @@ public class DaoPostgres implements DaoConnectionInterface {
         try(Connection connection = createConnection()){
             daoFilter.checkEmailAndLogin(connection,errorArray,userRegisterEntities);
             if(errorArray.size() == 0){
-                String query = "INSERT INTO memy.users (login,password,email) VALUES(?,?,?);";
+                String query = "INSERT INTO memy.users (login,password,email,verify) VALUES(?,?,?,?);";
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1,userRegisterEntities.getLogin());
                 preparedStatement.setString(2,userRegisterEntities.getPassword());
                 preparedStatement.setString(3,userRegisterEntities.getEmail());
+                preparedStatement.setBoolean(4,false);
                 preparedStatement.executeUpdate();
             }
         }
@@ -54,6 +55,22 @@ public class DaoPostgres implements DaoConnectionInterface {
             errorArray.add(EnumRegisterError.DATABASE_SQL_EXCEPTION_ERROR.getErrorCode());
         }
         return errorArray;
+    }
+
+    @Override
+    public void activeAccount(String email) {
+        DaoFilter daoFilter = new DaoFilter();
+        try(Connection connection = createConnection()){
+            if(daoFilter.checkIfExmailExist(connection,email)){
+                String query = "UPDATE memy.users SET verify = true WHERE email = ?;";
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1,email);
+                preparedStatement.executeUpdate();
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     private Connection createConnection() throws SQLException{

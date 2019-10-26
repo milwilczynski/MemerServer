@@ -47,6 +47,24 @@ public class DaoFilter implements DaoUserFilter {
         }
         return errorArray;
     }
+
+    @Override
+    public Boolean checkIfExmailExist(Connection connection, String email) {
+        try{
+            String query = "SELECT email FROM memy.users WHERE email = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return true;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public ArrayList<Integer> checkEmailAndLogin(Connection connection, ArrayList<Integer> errorArray, UserRegisterEntities userRegisterEntities){
         errorArray = checkIfEmailIsTaken(connection,errorArray,userRegisterEntities.getEmail());
         errorArray = checkIfUserExist(connection,errorArray,userRegisterEntities.getLogin());

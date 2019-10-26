@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface DaoUserFilter {
     ArrayList<Integer> checkIfUserExist(Connection connection, ArrayList<Integer> errorArray,String login);
     ArrayList<Integer> checkIfEmailIsTaken(Connection connection, ArrayList<Integer> errorArray,String email);
+    Boolean checkIfExmailExist(Connection connection,String email);
 }

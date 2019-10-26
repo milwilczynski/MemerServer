@@ -41,5 +41,12 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.3.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.sun.activation/javax.activation -->
+        <dependency>
+            <groupId>com.sun.activation</groupId> <!--NIE MAM POJĘCIA CO TO ZA DEPENDENCY ALE BEZ TEGO NIE DZIAŁA JAVAX.MAIL-->
+            <artifactId>javax.activation</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
     </dependencies>
 </project>

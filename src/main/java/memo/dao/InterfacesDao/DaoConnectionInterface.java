@@ -8,4 +8,5 @@ import java.util.ArrayList;
 public interface DaoConnectionInterface {
     int checkUser(UserEntities userEntities);
     ArrayList<Integer> insertUser(UserRegisterEntities userRegisterEntities);
+    void activeAccount(String email);
 }
