@@ -26,6 +26,6 @@ public class RegularExpressions {
         if(!email.matcher(userRegisterEntities.getEmail()).matches()){
             errorsArray.add(EnumRegisterError.PATTERN_EMAIL_ERROR.getErrorCode());
         }
-        return null;
+        return errorsArray;
     }
 }

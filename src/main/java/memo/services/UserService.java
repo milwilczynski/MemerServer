@@ -36,9 +36,8 @@ public class UserService {
 
         if(errorArray.isEmpty()){
             //jesli tablica bledow jest pusta to zacznij dzialac na bazie
-            if(dao.insertUser(userRegisterEntities)){
-                //
-            }
+            errorArray = dao.insertUser(userRegisterEntities);
+            return errorArray;
         }
         return errorArray;
     }

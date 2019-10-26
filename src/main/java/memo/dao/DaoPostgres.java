@@ -3,9 +3,11 @@ package memo.dao;
 import memo.dao.InterfacesDao.DaoConnectionInterface;
 import memo.entities.UserEntities;
 import memo.entities.UserRegisterEntities;
+import memo.enums.EnumRegisterError;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 @Repository("postgres")
 public class DaoPostgres implements DaoConnectionInterface {
@@ -34,15 +36,24 @@ public class DaoPostgres implements DaoConnectionInterface {
     }
 
     @Override
-    public boolean insertUser(UserRegisterEntities userRegisterEntities) {
+    public ArrayList<Integer> insertUser(UserRegisterEntities userRegisterEntities) {
+        ArrayList<Integer> errorArray = new ArrayList<>();
+        DaoFilter daoFilter = new DaoFilter();
         try(Connection connection = createConnection()){
-            //LOGIKA ZWIAZANA Z REJESTRACJA
-            return true;
+            daoFilter.checkEmailAndLogin(connection,errorArray,userRegisterEntities);
+            if(errorArray.size() == 0){
+                String query = "INSERT INTO memy.users (login,password,email) VALUES(?,?,?);";
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1,userRegisterEntities.getLogin());
+                preparedStatement.setString(2,userRegisterEntities.getPassword());
+                preparedStatement.setString(3,userRegisterEntities.getEmail());
+                preparedStatement.executeUpdate();
+            }
         }
         catch (SQLException e){
-            e.printStackTrace();
+            errorArray.add(EnumRegisterError.DATABASE_SQL_EXCEPTION_ERROR.getErrorCode());
         }
-        return false;
+        return errorArray;
     }
 
     private Connection createConnection() throws SQLException{
