@@ -17,4 +17,6 @@ public interface DaoConnectionInterface {
     ImageEntities findPictureByTitle(String title) throws NoPictureException;
 
     ArrayList<ImageEntities> getPictures(int intPage);
+
+    boolean checkIfIncreasePossible(String login, String name);
 }

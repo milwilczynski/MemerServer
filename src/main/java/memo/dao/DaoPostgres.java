@@ -127,7 +127,7 @@ public class DaoPostgres implements DaoConnectionInterface {
     public ArrayList<ImageEntities> getPictures(int intPage) {
         try(Connection connection = createConnection()){
             ArrayList<ImageEntities> images = new ArrayList<>();
-            String sql = "SELECT * FROM memy.images OFFSET ? LIMIT 10;";
+            String sql = "SELECT * FROM memy.images order by id DESC OFFSET ? LIMIT 10;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,intPage * 10);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -145,6 +145,40 @@ public class DaoPostgres implements DaoConnectionInterface {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean checkIfIncreasePossible(String login, String name) {
+        try(Connection connection = createConnection()){
+            String sql = "SELECT * FROM memy.score WHERE (SELECT id FROM memy.users WHERE login = ?) = user_id AND (SELECT id FROM memy.images WHERE image_name = ?) = image_id;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,login);
+            preparedStatement.setString(2,name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                preparedStatement.close();
+                resultSet.close();
+                return false;
+            }
+            else{
+                String sqlInsert =
+                        "INSERT INTO memy.score(user_id,image_id)\n" +
+                        "VALUES((SELECT id FROM memy.users WHERE login = ?),(SELECT id FROM memy.images WHERE image_name = ?));";
+                PreparedStatement ps = connection.prepareStatement(sqlInsert);
+                ps.setString(1,login);
+                ps.setString(2,name);
+                ps.executeUpdate();
+                ps = connection.prepareStatement("UPDATE memy.images SET image_score = (SELECT image_score FROM memy.images WHERE image_name = ?)+1 WHERE image_name = ?");
+                ps.setString(1,name);
+                ps.setString(2,name);
+                ps.executeUpdate();
+                return true;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private Connection createConnection() throws SQLException{

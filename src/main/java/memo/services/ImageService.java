@@ -1,9 +1,13 @@
 package memo.services;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import memo.dao.InterfacesDao.DaoConnectionInterface;
 import memo.entities.ImageEntities;
+import memo.entities.IncreaseEntities;
 import memo.exceptions.NoPictureException;
 import memo.exceptions.TitleInputException;
+import memo.security.JwtConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -46,5 +50,21 @@ public class ImageService {
             return images;
         }
         return null;
+    }
+
+    public boolean increase(IncreaseEntities increaseEntities) {
+        String login = "";
+        try{
+            Claims claims = Jwts.parser()
+                    .setSigningKey(JwtConfig.getSecret())
+                    .parseClaimsJws(increaseEntities.getToken())
+                    .getBody();
+            login = (String) claims.get("login");
+            return dao.checkIfIncreasePossible(login,increaseEntities.getName());
+        }
+        catch (Exception e){
+            System.out.println("Error while parsing jwt token, in ImageService");
+        }
+        return false;
     }
 }

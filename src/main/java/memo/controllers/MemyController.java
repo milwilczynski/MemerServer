@@ -1,14 +1,12 @@
 package memo.controllers;
 
 import memo.entities.ImageEntities;
+import memo.entities.IncreaseEntities;
 import memo.exceptions.NoPictureException;
 import memo.exceptions.TitleInputException;
 import memo.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -39,5 +37,10 @@ public class MemyController {
     public List<ImageEntities> getPictures(@RequestParam String page){
         ArrayList<ImageEntities> images = imageService.getPictures(page);
         return images;
+    }
+    @PostMapping(value = "/increaseScore")
+    public boolean increaseScore(@RequestBody IncreaseEntities increaseEntities){
+        boolean decision = imageService.increase(increaseEntities);
+        return decision;
     }
 }

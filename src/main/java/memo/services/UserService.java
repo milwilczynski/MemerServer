@@ -24,7 +24,7 @@ public class UserService {
         String token = null;
         if(dao.checkUser(userEntities) == 1){
             GenerateJwt generateJwt = new GenerateJwt();
-            token = generateJwt.generateToken();
+            token = generateJwt.generateToken(userEntities.getLogin());
             return token;
         }
         return token;

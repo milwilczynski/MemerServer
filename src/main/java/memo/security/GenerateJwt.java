@@ -10,7 +10,7 @@ import java.util.Date;
 
 
 public class GenerateJwt {
-    public String generateToken(){
+    public String generateToken(String login){
         long currentTime = System.currentTimeMillis();
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(JwtConfig.getSecret());
@@ -19,6 +19,7 @@ public class GenerateJwt {
         return Jwts.builder()
                 .setSubject("Login") // tutaj będzie login użytkownika
                 .claim("roles","user")
+                .claim("login",login)
                 .setIssuedAt(new Date(currentTime))
                 .setExpiration(new Date(currentTime + JwtConfig.getExpirationTime()))
                 .signWith(signatureAlgorithm, signingKey)
