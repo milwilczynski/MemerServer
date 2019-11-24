@@ -123,6 +123,30 @@ public class DaoPostgres implements DaoConnectionInterface {
         return null;
     }
 
+    @Override
+    public ArrayList<ImageEntities> getPictures(int intPage) {
+        try(Connection connection = createConnection()){
+            ArrayList<ImageEntities> images = new ArrayList<>();
+            String sql = "SELECT * FROM memy.images OFFSET ? LIMIT 10;";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,intPage * 10);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                ImageEntities img = ImageEntities.builder()
+                        .imageTitle(resultSet.getString("image_title"))
+                        .imageName(resultSet.getString("image_name"))
+                        .imageScore(resultSet.getInt("image_score"))
+                        .build();
+                images.add(img);
+            }
+            return images;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private Connection createConnection() throws SQLException{
         return DriverManager.getConnection(url,user,passowrd);
     }

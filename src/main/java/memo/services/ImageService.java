@@ -38,4 +38,13 @@ public class ImageService {
         ImageEntities img = dao.findPictureByTitle(title);
         return img;
     }
+
+    public ArrayList<ImageEntities> getPictures(String page) {
+        if(!Double.isNaN(Double.parseDouble(page))){
+            int intPage = Integer.parseInt(page);
+            ArrayList<ImageEntities> images = dao.getPictures(intPage);
+            return images;
+        }
+        return null;
+    }
 }

@@ -20,6 +20,7 @@ public class Main {
         filterRegistrationBean.setFilter(new JwtFilter());
         filterRegistrationBean.setUrlPatterns(Collections.singleton("/random"));
         filterRegistrationBean.setUrlPatterns(Collections.singleton("/getPictureByTitle"));
+        filterRegistrationBean.setUrlPatterns(Collections.singleton("/getPictures"));
         return filterRegistrationBean;
     }
 }

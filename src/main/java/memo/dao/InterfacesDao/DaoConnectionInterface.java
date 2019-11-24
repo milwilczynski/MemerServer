@@ -15,4 +15,6 @@ public interface DaoConnectionInterface {
     ImageEntities getRandomImage();
 
     ImageEntities findPictureByTitle(String title) throws NoPictureException;
+
+    ArrayList<ImageEntities> getPictures(int intPage);
 }
