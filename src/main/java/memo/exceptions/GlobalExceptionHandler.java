@@ -21,4 +21,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> noPictureException(){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No picture in db");
     }
+    @ExceptionHandler({WrongDataException.class})
+    public ResponseEntity<Object> wrongDataLogInError(){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Wrong password or login");
+    }
 }

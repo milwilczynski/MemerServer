@@ -2,6 +2,7 @@ package memo.controllers;
 
 import memo.entities.UserEntities;
 import memo.entities.UserRegisterEntities;
+import memo.exceptions.WrongDataException;
 import memo.services.EmailVerifyService;
 import memo.services.ImageService;
 import memo.services.UserService;
@@ -24,8 +25,14 @@ public class MemyPublicController {
     }
 
     @PostMapping(value = "/login")
-    public String getToken(@RequestBody UserEntities userEntities){
-        return userService.userExist(userEntities);
+    public String getToken(@RequestBody UserEntities userEntities)throws WrongDataException{
+        String token = userService.userExist(userEntities);
+        if(token != null && !token.equals("") && token.length() > 5){
+            return token;
+        }
+        else {
+            throw new WrongDataException();
+        }
     }
     @PostMapping(value = "/register")
     public ArrayList<Integer> registerUser(@RequestBody UserRegisterEntities userRegisterEntities){
