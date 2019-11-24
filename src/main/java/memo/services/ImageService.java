@@ -2,6 +2,8 @@ package memo.services;
 
 import memo.dao.InterfacesDao.DaoConnectionInterface;
 import memo.entities.ImageEntities;
+import memo.exceptions.NoPictureException;
+import memo.exceptions.TitleInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -28,5 +30,12 @@ public class ImageService {
             //tutaj bedzie throw wyjatek
         }
         return null;
+    }
+    public ImageEntities getPictureByTitle(String title) throws TitleInputException, NoPictureException {
+        if(title.length() == 0){
+            throw new TitleInputException();
+        }
+        ImageEntities img = dao.findPictureByTitle(title);
+        return img;
     }
 }

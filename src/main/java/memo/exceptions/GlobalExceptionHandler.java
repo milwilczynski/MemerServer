@@ -17,4 +17,8 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Object> titleError(){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Wrong title");
     }
+    @ExceptionHandler({NoPictureException.class})
+    public ResponseEntity<Object> noPictureException(){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No picture in db");
+    }
 }

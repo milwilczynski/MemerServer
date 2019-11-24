@@ -5,8 +5,10 @@ import memo.entities.ImageEntities;
 import memo.entities.UserEntities;
 import memo.entities.UserRegisterEntities;
 import memo.enums.EnumRegisterError;
+import memo.exceptions.NoPictureException;
 import org.springframework.stereotype.Repository;
 
+import java.awt.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +92,32 @@ public class DaoPostgres implements DaoConnectionInterface {
         }
         catch (SQLException e){
             System.out.println("DaoPosgres - getRandomImage");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ImageEntities findPictureByTitle(String title)throws NoPictureException {
+        try(Connection connection = createConnection()){
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM memy.images WHERE image_title = '"+title+"'");
+            if(!resultSet.next()){
+                throw new SQLException();
+            }
+            else{
+                ImageEntities img = ImageEntities.builder()
+                        .imageTitle(resultSet.getString("image_title"))
+                        .imageName(resultSet.getString("image_name"))
+                        .imageScore(resultSet.getInt("image_score"))
+                        .build();
+                return img;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
         return null;
