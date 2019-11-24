@@ -1,5 +1,9 @@
 package memo.services;
 
+import memo.dao.InterfacesDao.DaoConnectionInterface;
+import memo.entities.ImageEntities;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -10,34 +14,18 @@ import java.util.Random;
 
 @Service
 public class ImageService {
-    private List<String> nameOfFiles = new ArrayList<>();
-    private void fillArrayWithNameOfPictures(){
-        String projectPath = System.getProperty("user.dir");
-        File folder = new File(projectPath+"\\src\\main\\resources\\static\\images");
-        File[] listOffFiles = folder.listFiles();
-        for(int i = 0; i < listOffFiles.length; i++){
-            if(listOffFiles[i].isFile()){
-                nameOfFiles.add(listOffFiles[i].getName());
-            }
+    private DaoConnectionInterface dao;
+    @Autowired
+    public ImageService(@Qualifier("postgres") DaoConnectionInterface dao) {
+        this.dao = dao;
+    }
+    public ImageEntities getRandomPictureFromDb(){
+        ImageEntities img = dao.getRandomImage();
+        if(img != null){
+            return img;
         }
-    }
-    public String getRandomPicture(){
-        fillArrayWithNameOfPictures();
-        Random rand = new Random();
-        int n = rand.nextInt(nameOfFiles.size());
-        return nameOfFiles.get(n);
-    }
-    public String[] getTenPictures(int page){
-        //page = 0 zwroci zdjecia od 0 do 9, page = 1 zwroci zdjecia od 10 do 19, zmienna definiuje zakres obrazkow
-        fillArrayWithNameOfPictures();
-        String returnArray[] = new String[10];
-        int start = 10 * page;
-        int end = start + 10;
-        if(end > nameOfFiles.size()){
-            for(int i = start; i < end; i++){
-                returnArray[i] = nameOfFiles.get(i);
-            }
-            return returnArray;
+        else{
+            //tutaj bedzie throw wyjatek
         }
         return null;
     }

@@ -1,6 +1,7 @@
 package memo.dao;
 
 import memo.dao.InterfacesDao.DaoConnectionInterface;
+import memo.entities.ImageEntities;
 import memo.entities.UserEntities;
 import memo.entities.UserRegisterEntities;
 import memo.enums.EnumRegisterError;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository("postgres")
 public class DaoPostgres implements DaoConnectionInterface {
@@ -71,6 +73,26 @@ public class DaoPostgres implements DaoConnectionInterface {
         catch (SQLException e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public ImageEntities getRandomImage() {
+        try(Connection connection = createConnection()){
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM memy.images ORDER BY random() LIMIT 1;");
+            resultSet.next();
+            ImageEntities img = ImageEntities.builder()
+                    .imageTitle(resultSet.getString("image_title"))
+                    .imageName(resultSet.getString("image_name"))
+                    .imageScore(resultSet.getInt("image_score"))
+                    .build();
+            return img;
+        }
+        catch (SQLException e){
+            System.out.println("DaoPosgres - getRandomImage");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private Connection createConnection() throws SQLException{

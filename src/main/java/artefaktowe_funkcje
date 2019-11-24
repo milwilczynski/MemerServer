@@ -1,0 +1,11 @@
+(FUNKCJA POBIERA PATHA DYNAMICZNIE)
+private void fillArrayWithNameOfPictures(){
+        String projectPath = System.getProperty("user.dir");
+        File folder = new File(projectPath+"\\src\\main\\resources\\static\\images");
+        File[] listOffFiles = folder.listFiles();
+        for(int i = 0; i < listOffFiles.length; i++){
+            if(listOffFiles[i].isFile()){
+                nameOfFiles.add(listOffFiles[i].getName());
+            }
+        }
+}

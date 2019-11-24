@@ -18,7 +18,8 @@ public class Main {
     public FilterRegistrationBean filterRegistrationBean(){
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
         filterRegistrationBean.setFilter(new JwtFilter());
-        filterRegistrationBean.setUrlPatterns(Collections.singleton("/losowe"));
+        filterRegistrationBean.setUrlPatterns(Collections.singleton("/random"));
+        filterRegistrationBean.setUrlPatterns(Collections.singleton("/getPictureByTitle"));
         return filterRegistrationBean;
     }
 }
