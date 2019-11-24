@@ -28,7 +28,7 @@ public class MemyController {
         ImageEntities img = imageService.getRandomPictureFromDb();
         return img;
     }
-    @PostMapping(value ="/getPictureByTitle")
+    @GetMapping(value ="/getPictureByTitle")
     public ImageEntities getPictureByTitle(@RequestParam String title) throws TitleInputException, NoPictureException {
         ImageEntities img = imageService.getPictureByTitle(title);
         return img;
