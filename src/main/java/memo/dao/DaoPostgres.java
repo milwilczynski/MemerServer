@@ -22,7 +22,7 @@ public class DaoPostgres implements DaoConnectionInterface {
     @Override
     public int checkUser(UserEntities userEntities) {
         try(Connection connection = createConnection()){
-            String query = "SELECT * FROM memy.users WHERE login = ? AND password = ?";
+            String query = "SELECT * FROM memy.users WHERE login = ? AND password = crypt(?,password);";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1, userEntities.getLogin());
@@ -46,7 +46,7 @@ public class DaoPostgres implements DaoConnectionInterface {
         try(Connection connection = createConnection()){
             daoFilter.checkEmailAndLogin(connection,errorArray,userRegisterEntities);
             if(errorArray.size() == 0){
-                String query = "INSERT INTO memy.users (login,password,email,verify) VALUES(?,?,?,?);";
+                String query = "INSERT INTO memy.users (login,password,email,verify) VALUES(?,crypt(?,gen_salt('md5')),?,?);";
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1,userRegisterEntities.getLogin());
                 preparedStatement.setString(2,userRegisterEntities.getPassword());
@@ -103,7 +103,7 @@ public class DaoPostgres implements DaoConnectionInterface {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM memy.images WHERE image_title = '"+title+"'");
             if(!resultSet.next()){
-                throw new SQLException();
+                throw new NoPictureException("/getPictureByTitle");
             }
             else{
                 ImageEntities img = ImageEntities.builder()
@@ -115,9 +115,6 @@ public class DaoPostgres implements DaoConnectionInterface {
             }
         }
         catch (SQLException e){
-            e.printStackTrace();
-        }
-        catch (Exception e){
             e.printStackTrace();
         }
         return null;

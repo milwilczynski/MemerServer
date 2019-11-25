@@ -18,8 +18,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Wrong title");
     }
     @ExceptionHandler({NoPictureException.class})
-    public ResponseEntity<Object> noPictureException(){
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("No picture in db");
+    public ResponseEntity<Object> noPictureException(Exception e){
+        ClientErrorMessage error = ClientErrorMessage.builder()
+                .error("Not Found")
+                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                .message("Can't find picture")
+                .endPoint(e.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
     @ExceptionHandler({WrongDataException.class})
     public ResponseEntity<Object> wrongDataLogInError(){

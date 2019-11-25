@@ -2,6 +2,7 @@ package memo.controllers;
 
 import memo.entities.UserEntities;
 import memo.entities.UserRegisterEntities;
+import memo.exceptions.NoPictureException;
 import memo.exceptions.WrongDataException;
 import memo.services.EmailVerifyService;
 import memo.services.ImageService;

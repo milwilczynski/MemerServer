@@ -1,7 +1,7 @@
 package memo.exceptions;
 
 public class NoPictureException extends Exception {
-    public NoPictureException(){
-        super();
+    public NoPictureException(String endPoint){
+        super(endPoint);
     }
 }
