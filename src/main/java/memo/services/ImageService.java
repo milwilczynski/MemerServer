@@ -8,6 +8,7 @@ import memo.entities.IncreaseEntities;
 import memo.exceptions.NoPictureException;
 import memo.exceptions.TitleInputException;
 import memo.security.JwtConfig;
+import memo.wrapper.ImageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -43,11 +44,16 @@ public class ImageService {
         return img;
     }
 
-    public ArrayList<ImageEntities> getPictures(String page) {
+    public ImageWrapper getPictures(String page) {
         if(!Double.isNaN(Double.parseDouble(page))){
             int intPage = Integer.parseInt(page);
             ArrayList<ImageEntities> images = dao.getPictures(intPage);
-            return images;
+            ImageWrapper imageWrapper = new ImageWrapper();
+            imageWrapper.setName("images");
+            for(ImageEntities image: images){
+                imageWrapper.getImages().add(image);
+            }
+            return imageWrapper;
         }
         return null;
     }

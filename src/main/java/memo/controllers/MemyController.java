@@ -5,6 +5,8 @@ import memo.entities.IncreaseEntities;
 import memo.exceptions.NoPictureException;
 import memo.exceptions.TitleInputException;
 import memo.services.ImageService;
+
+import memo.wrapper.ImageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,8 +36,8 @@ public class MemyController {
         return img;
     }
     @GetMapping(value ="/getPictures")
-    public List<ImageEntities> getPictures(@RequestParam String page){
-        ArrayList<ImageEntities> images = imageService.getPictures(page);
+    public ImageWrapper getPictures(@RequestParam String page){
+        ImageWrapper images = imageService.getPictures(page);
         return images;
     }
     @PostMapping(value = "/increaseScore")
