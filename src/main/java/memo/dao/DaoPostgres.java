@@ -22,7 +22,7 @@ public class DaoPostgres implements DaoConnectionInterface {
     @Override
     public int checkUser(UserEntities userEntities) {
         try(Connection connection = createConnection()){
-            String query = "SELECT * FROM memy.users WHERE login = ? AND password = crypt(?,password);";
+            String query = "SELECT * FROM memy.users WHERE login = ? AND password = crypt(?,password) AND verify = true;";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1, userEntities.getLogin());
