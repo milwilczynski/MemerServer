@@ -16,7 +16,7 @@ public class RegularExpressions {
     public ArrayList<Integer> checkTheCorrectness(UserRegisterEntities userRegisterEntities){
         Pattern login = Pattern.compile("[a-zA-Z1-9]{5,12}"); // LOGIN
         Pattern password = Pattern.compile("([!#$%a-zA-Z1-9]){8,40}");//Haslo
-        Pattern email = Pattern.compile("([a-zA-Z1-9]+\\@{1}){1}+([a-zA-z]+\\.){1}+[a-zA-Z]{2,33}"); //Mail
+        Pattern email = Pattern.compile("([a-zA-Z0-9]+\\@{1}){1}+([a-zA-z]+\\.){1}+[a-zA-Z]{2,33}"); //Mail
         if(!login.matcher(userRegisterEntities.getLogin()).matches()){
             errorsArray.add(EnumRegisterError.PATTERN_LOGIN_ERROR.getErrorCode());
         }

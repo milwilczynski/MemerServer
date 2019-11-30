@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="00e96c4a-accb-4bc7-8660-d75f4245954f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/memo/dao/DaoPostgres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/memo/dao/DaoPostgres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/memo/services/filter/RegularExpressions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/memo/services/filter/RegularExpressions.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,18 +14,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/memo/controllers/MemyController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/memo/entities/UserRegisterEntities.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -50,7 +38,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/memo/dao/DaoPostgres.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2592">
+            <state relative-caret-position="351">
               <caret line="24" column="91" selection-start-line="24" selection-start-column="91" selection-end-line="24" selection-end-column="91" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -92,14 +80,28 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/memo/controllers/MemyPublicController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="719">
-              <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+            <state relative-caret-position="105">
+              <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#MemyPublicController#0;class#MemyPublicController#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/memo/services/filter/RegularExpressions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="439">
+              <caret line="20" column="48" lean-forward="true" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#284#285#0" expanded="true" />
+                <element signature="e#336#337#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -152,7 +154,6 @@
         <option value="$PROJECT_DIR$/src/main/java/memo/entities/UserRegisterEntities.java" />
         <option value="$PROJECT_DIR$/src/main/java/memo/enums/EnumRegullarExpressionsError.java" />
         <option value="$PROJECT_DIR$/src/main/java/memo/enums/EnumRegisterError.java" />
-        <option value="$PROJECT_DIR$/src/main/java/memo/services/filter/RegularExpressions.java" />
         <option value="$PROJECT_DIR$/src/main/java/memo/services/EmailService.java" />
         <option value="$PROJECT_DIR$/src/main/java/memo/security/VerifyEmailToken.java" />
         <option value="$PROJECT_DIR$/src/main/java/memo/services/ancillary/SendEmail.java" />
@@ -184,6 +185,7 @@
         <option value="$PROJECT_DIR$/src/main/java/memo/wrapper/ImageWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/memo/services/ImageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/memo/dao/DaoPostgres.java" />
+        <option value="$PROJECT_DIR$/src/main/java/memo/services/filter/RegularExpressions.java" />
       </list>
     </option>
   </component>
@@ -199,8 +201,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -355,13 +355,15 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574974676858" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575115430634" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -421,8 +423,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22121535" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22547974" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -431,7 +434,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -486,18 +489,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/memo/services/filter/RegularExpressions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-            <element signature="e#336#337#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/memo/services/ancillary/SendEmail.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/memo/security/email/GenerateVerifyEmailToken.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -719,6 +710,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/memo/dao/DaoPostgres.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="24" column="91" selection-start-line="24" selection-start-column="91" selection-end-line="24" selection-end-column="91" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/memo/services/ImageService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="999">
@@ -768,23 +769,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/memo/dao/DaoPostgres.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/memo/controllers/MemyPublicController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2592">
-          <caret line="24" column="91" selection-start-line="24" selection-start-column="91" selection-end-line="24" selection-end-column="91" />
+        <state relative-caret-position="105">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#MemyPublicController#0;class#MemyPublicController#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/memo/controllers/MemyPublicController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/memo/services/filter/RegularExpressions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="719">
-          <caret line="48" column="5" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
+        <state relative-caret-position="439">
+          <caret line="20" column="48" lean-forward="true" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#MemyPublicController#0;class#MemyPublicController#0" />
+            <element signature="e#284#285#0" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
           </folding>
         </state>
       </provider>
