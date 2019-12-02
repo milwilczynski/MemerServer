@@ -14,7 +14,7 @@ public class RegularExpressions {
     }
     //Metoda zwraca tablie intow kazdy int odpowiada jakiemus bledu, opis bledow w dokumentacji
     public ArrayList<Integer> checkTheCorrectness(UserRegisterEntities userRegisterEntities){
-        Pattern login = Pattern.compile("[a-zA-Z1-9]{5,12}"); // LOGIN
+        Pattern login = Pattern.compile("[a-zA-Z0-9]{5,20}"); // LOGIN
         Pattern password = Pattern.compile("([!#$%a-zA-Z1-9]){8,40}");//Haslo
         Pattern email = Pattern.compile("([a-zA-Z0-9]+\\@{1}){1}+([a-zA-z]+\\.){1}+[a-zA-Z]{2,33}"); //Mail
         if(!login.matcher(userRegisterEntities.getLogin()).matches()){
